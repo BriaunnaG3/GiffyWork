@@ -41,7 +41,7 @@ $(document).ready(function () {
     $("#shade").on("click", function () {
         var shade = (baseUrl + "shade" + apiKey);
         console.log(shade);
-        
+
         $.ajax({
             url: shade,
             method: "GET"
@@ -61,7 +61,7 @@ $(document).ready(function () {
     $("#sips-tea").on("click", function () {
         var sipsTea = (baseUrl + "sips-tea" + apiKey);
         console.log(shade);
-        
+
         $.ajax({
             url: sipsTea,
             method: "GET"
@@ -96,31 +96,78 @@ $(document).ready(function () {
 
 
     })
- $("#add-button").on("click", function (event) {
-    event.preventDefault();
+    $("#add-button").on("click", function (event) {
+        event.preventDefault();
+        var inputs = $("#input-more").val().trim();
+        var newButton = $("<button>");
+        newButton.attr({
+            class: "btn btn-primary",
+            id: "new gif",
+            type: "button"
+        });
+        newButton.text(inputs);
+        $("#storage").append(newButton);
 
-   
-   //alert("this button has been clicked"); 
-    var gifCount = 0; 
-    var inputs = $("#input-more").val().trim();
-    console.log(inputs);
-    
-    var newGif = $("#add-button");
+    })
 
-    inputs.attr("#input-more" + newGif);
-    // inputs.attr("" +  gifCount);
-    //   inputs.text(newGif);
+
+ $("#add-button").on("click", function () {
+    //  create your button
+
+    var buttonName = $("#input-more").val().trim();
+
+    var newBtn = $("<button>");
+    newBtn.addClass("giphyBtn");
+    newBtn.attr("data-name", buttonName);
+    newBtn.text(buttonName);
+    $("#btn-container").append(newBtn);
     
 
-    
-    
-    // // var added = $("#input-more").attr(inputs);
-   
-    // // console.log(added);
-    
-    
+
+
+    //  append it to your buttons container
+
+
+    //var added = (baseUrl + newAdd + apiKey);
+    // $.ajax({
+    //     url: added,
+    //     method: "GET"
+    // }).then(function (response) {
+    //     var results = (response.data);
+    //     var placer = 0;
+    //     for (i = 0; i < results.length; i++) {
+
+    //         $("#placer" + i).attr("src", response.data[i].images.fixed_height.url);
+
+    //     }
+    //     console.log( "this button is working");
+    //     // addclass("giphybtn")
+        
+    // })
  })
- 
 
+ $(document).on("click", ".giphyBtn", function(event){
+    var name = $(this).attr("data-name");
+    
+    var giphyUrl = baseUrl + name + apiKey;
+
+    console.log(giphyUrl);
+    
+
+    $.ajax({
+        url: giphyUrl,
+        method: "GET"
+    }).then(function (response) {
+        // var results = (response.data);
+        // var placer = 0;
+        // for (i = 0; i < results.length; i++) {
+
+        //     $("#placer" + i).attr("src", response.data[i].images.fixed_height.url);
+
+        // }
+        console.log(response.data);
+        
+    })
+ });
 
 });
