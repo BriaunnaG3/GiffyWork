@@ -149,23 +149,24 @@ $(document).ready(function () {
  $(document).on("click", ".giphyBtn", function(event){
     var name = $(this).attr("data-name");
     
-    var giphyUrl = baseUrl + name + apiKey;
+    var addedURl = baseUrl + name + apiKey;
 
-    console.log(giphyUrl);
+    console.log(addedURl);
     
-
     $.ajax({
-        url: giphyUrl,
+        url: addedURl,
         method: "GET"
     }).then(function (response) {
-        // var results = (response.data);
-        // var placer = 0;
-        // for (i = 0; i < results.length; i++) {
+       
+        // console.log(response.data);
+        var results = (response.data);
+        //   console.log(results);
+          
+            for (i = 0; i < results.length; i++) {
 
-        //     $("#placer" + i).attr("src", response.data[i].images.fixed_height.url);
+             $(".giphyBtn" + i).attr("src", response.data[i].images.fixed_height.url);
 
-        // }
-        console.log(response.data);
+            }
         
     })
  });
