@@ -1,7 +1,7 @@
 const gifs = ["yas-huny", "shade", "sips-tea", "grinny"]
 
 
-var baseUrl = "http://api.giphy.com/v1/gifs/search?q=";
+var baseUrl = "https://api.giphy.com/v1/gifs/search?q=";
 var apiKey = "&api_key=FgHTSToMRKrgH8Ho8Wnq9Op9lOhgvGc9&limit=5";
 var queryUrl = baseUrl + apiKey;
 
